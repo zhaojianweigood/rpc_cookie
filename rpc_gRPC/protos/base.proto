@@ -1,0 +1,55 @@
+syntax = 'proto3';
+
+
+message Work {
+    int32 num1 = 1;
+    int32 num2 = 2;
+    enum Operation {
+        ADD = 0;
+        SUBTRACT = 1;
+        MULTIPLY = 2;
+        DIVIDE = 3;
+    }
+    Operation op = 3;
+}
+
+message Result {
+    int32 val = 1;
+}
+
+message City {
+    string name = 1;
+}
+
+message Subject {
+    string name = 1;
+}
+
+message Delta {
+    int32 val = 1;
+}
+
+message Sum {
+    int32 val = 1;
+}
+
+message Number {
+    int32 val = 1;
+}
+
+message Answer {
+    int32 val = 1;
+    string desc = 2;
+}
+
+service Demo {
+    // unary rpc,计算处理
+    rpc Calculate(Work) returns (Result) {}
+    // 服务端流式， 根据城市获取服务端返回多个学科
+    rpc GetSubjects(City) returns (stream Subject) {}
+    // 客户端流式， 客户端发送多个数， 服务端返回和
+    rpc Accumulate(stream Delta) returns (Sum) {}
+    // 客户端和服务端都流式 猜数字， 客户端向服务端发送多个数据， 在服务端认可范围内则返回
+    rpc GuessNumber(stream Number) returns (stream Answer){}
+}
+
