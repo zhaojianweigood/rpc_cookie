@@ -55,10 +55,6 @@ migrations
 *.swm
 *.swl
 
-rouchi/static/
-rouchi/models
-tasks/script/*.xlsx
-tasks/script/*.xls
 *.sql.gz
 *.rdb
 .idea
